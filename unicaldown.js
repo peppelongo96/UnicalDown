@@ -481,7 +481,7 @@ async function extractCookies(page) {
 term.brightBlue(`\nThis project is a fork of https://github.com/sup3rgiu/PoliDown* that was originally based on https://github.com/snobu/destreamer project.\n
 Current fork powered by @peppelongo96\n
 Initial version\n
- - ~Polimi~ Unical student autologin\n
+ - ~Polimi~ Unical users autologin\n
  - *Multithreading download through aria2c\n
  - *Possibility to choose the video resolution\n
 v1.1\n
@@ -489,7 +489,7 @@ v1.1\n
  - More accurate log console\n
 v1.2\n
  - videoUrlsFile option added\n
- - Double-click script lancher provided (Windows only)\n\n`);
+ - Double-clickable script launcher provided (Windows only)\n\n`);
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
