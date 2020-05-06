@@ -14,7 +14,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - More accurate log console
 #### v1.2
  - videoUrlsFile option added
- - Double-click script lancher provided (Windows only)
+ - Double-clickable script launcher provided (Windows only)
  
 ## PREREQS
 
@@ -29,7 +29,7 @@ Videoguide provided by original PoliDown project: http://www.youtube.com/watch?v
 ### Other OSs
 Installation is pretty much the same.
 
-## Double-click script launcher (Windows only)
+## Double-clickable script launcher (Windows only)
 An executable .bat file is provided. Just double-click on to automatically open cmd and start downloading.
 *Before to go*, right-click on it and choose Edit option. Just properly insert the usage that you want and Save next.
 
