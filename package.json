@@ -1,0 +1,21 @@
+{
+  "name": "unicaldown",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peppelongo96/UnicalDown"
+  },
+  "version": "1.2.0",
+  "description": "Locally save Microsoft Stream not-download-enabled videos uploaded by Università della Calabria",
+  "main": "unicaldown.js",
+  "keywords": [],
+  "author": "peppelongo96",
+  "license": "MIT",
+  "dependencies": {
+    "keytar": "^5.4.0",
+    "m3u8-parser": "^4.4.0",
+    "puppeteer": "^2.1.1",
+    "request": "^2.88.2",
+    "terminal-kit": "^1.26.10",
+    "yargs": "^15.0.3"
+  }
+}
