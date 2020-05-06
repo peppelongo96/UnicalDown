@@ -6,7 +6,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 
 ### Changelog
 #### Initial version
- - ~Polimi~ Unical student autologin
+ - ~Polimi~ Unical users autologin
  - *Multithreading download through aria2c
  - *Possibility to choose the video resolution
 #### v1.1
