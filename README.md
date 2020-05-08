@@ -17,8 +17,8 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - Double-clickable script launcher provided (Windows only)
 #### v1.3
  - Make aria2 downloading procedure more consistent and reliable
- - Added a double-clickable script launcher with Coffee support to temporarily suspend PC sleeping (Windows only)
- - Code adjustments
+ - Code adjustments to make more lightweight execution
+ - Added a second double-clickable script launcher to temporarily suspend PC sleeping (Windows only)
  
 ## PREREQS
 
