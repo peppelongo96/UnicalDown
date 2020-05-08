@@ -44,7 +44,6 @@ Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open 
 $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1"
 
 $ node unicaldown.js -u fiscalcode -f urlsFile.txt
-
 ```
 You can omit the password argument. UnicalDown will ask for it interactively and then save it securely in local system's keychain for the next use.
 
