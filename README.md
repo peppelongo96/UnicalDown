@@ -1,4 +1,4 @@
-# UnicalDown v1.2
+# UnicalDown v1.3
 
 #### Locally save Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
@@ -15,6 +15,10 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 #### v1.2
  - videoUrlsFile option added
  - Double-clickable script launcher provided (Windows only)
+#### v1.3
+ - Make aria2 downloading procedure more consistent and reliable
+ - Added a double-clickable script launcher with Coffee support to suspend PC sleeping (Windows only)
+ - Code adjustments
  
 ## PREREQS
 
@@ -32,6 +36,8 @@ Installation is pretty much the same.
 ## Double-clickable script launcher (Windows only)
 An executable .bat file is provided. Just double-click on to automatically open cmd and start downloading.
 *Before to go*, right-click on it and choose Edit option. Just properly insert the usage that you want and Save next.
+### *WITH_COFFEE* version
+Coffee is portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *WITH_COFEE* script version just correctly start and also kill Coffee task after UnicalDown procedure is finished. In case of killing problem (e.g. cmd was prematurely closed), exit from it by right-clicking on properly icon in notification area.
 
 ## Default usage
 ```
