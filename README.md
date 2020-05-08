@@ -36,7 +36,7 @@ Installation is pretty much the same.
 ## Double-clickable script launcher (Windows only)
 An executable .bat file is provided. Just double-click on to automatically open cmd and start downloading.
 *Before to go*, right-click on it and choose Edit option. Just properly insert the usage that you want and Save next.
-### *WITH_COFFEE* version
+### *Coffee* version
 Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *WITH_COFEE* script version just starts and also kills Coffee task after UnicalDown procedure is finished. In case of "illegal" killing problems (e.g. cmd was prematurely closed), you can exit from Coffee by right-clicking on its properly icon in notification area.
 
 ## Default usage
