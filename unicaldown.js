@@ -144,7 +144,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   console.log('We are now logged.\n...Gotting required authentication cookies...');
   await sleep (5000);
   const cookie = await extractCookies(page);
-  console.log('Authentication cookies got.');
+  console.log("Authentication cookies got.\nAt this point Chromium's job is done, shutting it down...");
   await browser.close(); // Aria1 does not require browser
   for (let videoUrl of videoUrls) {
     if (videoUrl == "") continue; // jump empty url
@@ -355,7 +355,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     // remove tmp dir
     rmDir(full_tmp_dir);
   }
-  console.log("\nAll requested videos have been downloaded!\nAt this point Chromium's job is done, shutting it down...");
+  console.log("\nAll requested videos have been downloaded!\n");
   term.green(`Done!\n`);
 }
 
