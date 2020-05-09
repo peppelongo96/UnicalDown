@@ -1,5 +1,6 @@
 @echo off
-rem set assignment is space-sensitive
+rem Put your settings in place of the dots
+rem Remember! set assignment is space-sensitive!
  
 set unicaldown_folder_path=...
 set fiscal_code=...
