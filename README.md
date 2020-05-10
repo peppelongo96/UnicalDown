@@ -1,6 +1,6 @@
 # UnicalDown v1.4
 
-#### Locally save Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
+#### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
 This project is a fork of https://github.com/sup3rgiu/PoliDown* that was originally based on https://github.com/snobu/destreamer project.
 
