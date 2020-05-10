@@ -44,7 +44,7 @@ An executable .bat file is provided. After properly settled it, just double-clic
 #### *Coffee version*
 Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *Coffee version* just starts and also kills Coffee task after UnicalDown procedure is finished. In case of "illegal" killing problems (e.g. cmd was prematurely closed), you can exit from Coffee by right-clicking on its properly icon in notification area.
 ### for macOS/Linux
-An executable .sh file is provided. **It's necessary to make it runnable**: execute 'chmod 777 this_launcher.sh' on terminal (obviously, you must navigate to project folder before). Next, **always run** the .sh script **using terminal**.
+An executable .sh file is provided. **It's necessary to make it runnable**: execute `chmod 777 this_launcher.sh` on terminal (obviously, you must navigate to project folder before). Next, **always run** the .sh script **using terminal**.
 
 ## Default usage
 ```
