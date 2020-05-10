@@ -34,7 +34,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 ## INSTALLATION INSTRUCTIONS
 ### Windows
 Videoguide provided by original PoliDown project: http://www.youtube.com/watch?v=iZgea4t5YW4. Just intending "UnicalDown" or "unicaldown" instead of "PoliDown" or "polidown". **After finishing the installation successfully, reboot to avoid any headless chromium booting issue**.
-### Other OSs
+### macOS/Linux
 Installation is pretty much the same.
 
 ## EASY-LAUNCHER
