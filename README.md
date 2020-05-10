@@ -37,7 +37,7 @@ Videoguide provided by original PoliDown project: http://www.youtube.com/watch?v
 ### Other OSs
 Installation is pretty much the same.
 
-## Easy-launcher
+## EASY-LAUNCHER
 Executable .sh and .bat file are provided to a simpler script usage. *Before to go*, **it's necessary to configure it with personal options**. *In general*, right-click on file and choose some Edit option.
 ### for Windows 
 An executable .bat file is provided. After properly settled it, just double-click on to automatically open cmd and start downloading.
