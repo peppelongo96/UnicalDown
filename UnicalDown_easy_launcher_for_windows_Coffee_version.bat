@@ -26,6 +26,6 @@ node unicaldown.js -u %fiscal_code% -f %urls_file_path% -o %output_folder_path% 
 @echo.
 @echo Closing Coffee . . .
 taskkill /im Coffee.exe /t /f >nul
-@echo Press a key to terminate . . .
+@echo Press any key to terminate . . .
 @pause >nul
 

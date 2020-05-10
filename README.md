@@ -19,6 +19,10 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - Make aria2 downloading procedure more consistent and reliable
  - Code adjustments in order to a more lightweight execution
  - Added a second double-clickable script launcher to temporarily suspend PC sleeping (Windows only)
+#### v.1.4
+ - Provide a tracking of video URLs that took in error with download task
+ - Add a macOS/Linux easy-launcher
+ - README updating 
  
 ## PREREQS
 
@@ -33,11 +37,14 @@ Videoguide provided by original PoliDown project: http://www.youtube.com/watch?v
 ### Other OSs
 Installation is pretty much the same.
 
-## Double-clickable script launcher (Windows only)
-An executable .bat file is provided. Just double-click on to automatically open cmd and start downloading.
-*Before to go*, right-click on it and choose Edit option. Just properly insert the usage that you want and Save next.
-### *Coffee version*
+## Easy-launcher
+Executable .sh and .bat file are provided to a simpler script usage. *Before to go*, **it's necessary to configure it with personal options**. *In general*, right-click on file and choose some Edit option.
+### for Windows 
+An executable .bat file is provided. After properly settled it, just double-click on to automatically open cmd and start downloading.
+#### *Coffee version*
 Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *Coffee version* just starts and also kills Coffee task after UnicalDown procedure is finished. In case of "illegal" killing problems (e.g. cmd was prematurely closed), you can exit from Coffee by right-clicking on its properly icon in notification area.
+### for macOS/Linux
+An executable .sh file is provided. **It's necessary to make it runnable**: execute 'chmod 777 this_launcher.sh' on terminal (obviously, you must navigate to project folder before). Next, **always run** the .sh script **using terminal**.
 
 ## Default usage
 ```

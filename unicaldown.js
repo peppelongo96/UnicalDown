@@ -82,6 +82,8 @@ function parseVideoUrls(videoUrls) {
   return videoUrls;
 }
 
+const notDownloaded = []; // take trace of not downloaded videos
+
 async function downloadVideo(videoUrls, username, password, outputDirectory) {
   // handle password
   const keytar = require('keytar');
@@ -168,6 +170,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
         errorMsg = '\nError downloading this video.\n'
       }
       term.red(errorMsg);
+      notDownloaded.push(videoUrl);
       continue;
     }
     // create tmp dir
@@ -289,7 +292,9 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     const video_full_path = path.join(full_tmp_dir, 'video_full.m3u8');
     const video_tmp_path = path.join(full_tmp_dir, 'video_tmp.m3u8');
     const video_segments_path = path.join(full_tmp_dir, 'video_segments');
-    while (true) {// make aria2 multithreading download more consistent
+    let times = 5;
+    count = 0; 
+    while (count < times) {// make aria2 multithreading download more consistent
       try {
         fs.writeFileSync(video_full_path, video_full);
         fs.writeFileSync(video_tmp_path, video_tmp);
@@ -301,9 +306,15 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
         rmDir(video_segments_path);
         fs.unlinkSync(video_tmp_path);
         fs.unlinkSync(video_full_path);
+        count++;
         continue;
       }
       break;
+    }
+    if (count==times) {
+    	term.red('\nError downloading this video.\n');
+    	notDownloaded.push(videoUrl);
+    	continue;
     }
     // **** AUDIO ****
     var audioLink = basePlaylistsUrl + audioObj['uri'];
@@ -320,7 +331,8 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     const audio_full_path = path.join(full_tmp_dir, 'audio_full.m3u8');
     const audio_tmp_path = path.join(full_tmp_dir, 'audio_tmp.m3u8');
     const audio_segments_path = path.join(full_tmp_dir, 'audio_segments');
-    while (true) {// make aria2 multithreading download more consistent
+    count = 0;
+    while (count < times) {// make aria2 multithreading download more consistent
       try {
         fs.writeFileSync(audio_full_path, audio_full);
         fs.writeFileSync(audio_tmp_path, audio_tmp);
@@ -331,9 +343,15 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
         rmDir(audio_segments_path);
         fs.unlinkSync(audio_tmp_path);
         fs.unlinkSync(audio_full_path);
+        count++;
         continue;
       }
       break;
+    }
+    if (count==times) {
+    	term.red('\nError downloading this video.\n');
+    	notDownloaded.push(videoUrl);
+    	continue;
     }
     // *** MERGE audio and video segements in an mp4 file ***
     if (fs.existsSync(path.join(outputDirectory, title+'.mp4')))
@@ -355,8 +373,10 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     // remove tmp dir
     rmDir(full_tmp_dir);
   }
-  console.log("\nAll requested videos have been downloaded!\n");
-  term.green(`Done!\n`);
+  if (notDownloaded.length > 0)
+  	term.red('DONE! But these videos have not been downloaded: %s\n', notDownloaded);
+  else 
+  	term.greeen("\nDONE! All requested videos have been downloaded!\n");
 }
 
 function doRequest(options) {
@@ -462,7 +482,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.3\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.4\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
