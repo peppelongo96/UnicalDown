@@ -134,7 +134,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   accedi.click();
   // Performing log in
   try {
-    await page.waitForSelector('input[id="passwordError"]', { timeout: 5000 });
+    await page.waitForSelector('#passwordError', { timeout: 5000 });
     term.red('Bad credentials.');
     process.exit(401);
   } catch (error) {}
