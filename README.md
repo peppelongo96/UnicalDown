@@ -1,4 +1,4 @@
-# UnicalDown v1.4  [![HitCount](http://hits.dwyl.com/peppelongo96/UnicalDown.svg)](http://hits.dwyl.com/peppelongo96/UnicalDown)
+# [UnicalDown v1.4](https://github.com/peppelongo96/UnicalDown/archive/v1.4.zip)  [![HitCount](http://hits.dwyl.com/peppelongo96/UnicalDown.svg)](http://hits.dwyl.com/peppelongo96/UnicalDown)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
