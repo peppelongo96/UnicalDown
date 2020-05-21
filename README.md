@@ -1,5 +1,5 @@
 # UnicalDown v1.4
-[![Download UnicalDown](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/unicaldown/files/latest/download)
+[![Download UnicalDown](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/unicaldown/files/latest/download) [![Download UnicalDown](https://img.shields.io/sourceforge/dt/unicaldown.svg)](https://sourceforge.net/projects/unicaldown/files/latest/download)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
