@@ -10,6 +10,7 @@ const path = require("path");
 const yargs = require("yargs");
 const m3u8Parser = require("m3u8-parser");
 const request = require('request');
+const notifier = require('node-notifier');
 
 const argv = yargs.options({
   v: { alias:'videoUrls', type: 'array', demandOption: false, describe : 'List of URLs'},
@@ -72,7 +73,10 @@ function sanityChecks() {
 
 function readFileToArray(path) {
   path = path.substr(1,path.length-2);
-  return fs.readFileSync(path).toString('utf-8').split('\r\n');
+  var isWin = process.platform;
+  if (isWin === "win32" || isWin === "win64") // check OS
+	return fs.readFileSync(path).toString('utf-8').split('\r\n'); // Windows procedure
+  return fs.readFileSync(path).toString('utf-8').split('\n'); // Bash procedure
 }
 
 function parseVideoUrls(videoUrls) {
@@ -377,6 +381,10 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   	term.red('DONE! But these videos have not been downloaded: %s\n', notDownloaded);
   else 
   	term.greeen("\nDONE! All requested videos have been downloaded!\n");
+  notifier.notify({ //native done notification
+	title: 'UnicalDown',
+	message: 'Process done! See logs on terminal.'
+  });
 }
 
 function doRequest(options) {
@@ -482,7 +490,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.4\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.5\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
