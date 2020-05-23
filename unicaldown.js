@@ -380,7 +380,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   if (notDownloaded.length > 0)
   	term.red('DONE! But these videos have not been downloaded: %s\n', notDownloaded);
   else 
-  	term.greeen("\nDONE! All requested videos have been downloaded!\n");
+  	term.green("\nDONE! All requested videos have been downloaded!\n");
   notifier.notify({ //native done notification
 	title: 'UnicalDown',
 	message: 'Process done! See logs on terminal.'
@@ -490,7 +490,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.5\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.5.1\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);

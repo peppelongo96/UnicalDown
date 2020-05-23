@@ -1,4 +1,4 @@
-# [UnicalDown v1.5](https://github.com/peppelongo96/UnicalDown/archive/v1.5.zip)  [![HitCount](http://hits.dwyl.com/peppelongo96/UnicalDown.svg)](http://hits.dwyl.com/peppelongo96/UnicalDown)
+# [UnicalDown v1.5.1](https://github.com/peppelongo96/UnicalDown/archive/v1.5.1.zip)  [![HitCount](http://hits.dwyl.com/peppelongo96/UnicalDown.svg)](http://hits.dwyl.com/peppelongo96/UnicalDown)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
@@ -26,6 +26,8 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 #### v.1.5
  - Fix readFileSync function for Unix-like systems
  - Notify natively terminated downloading process (if you are upgrading, please update dependencies by `$ npm install` command)
+#### v.1.5.1
+ - Fix sintax error
  
 ## PREREQS
 
