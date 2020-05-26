@@ -8,16 +8,17 @@ const https = require('https');
 const url = require('url');
 const path = require("path");
 const yargs = require("yargs");
+const keytar = require('keytar');
 const m3u8Parser = require("m3u8-parser");
 const request = require('request');
 const notifier = require('node-notifier');
 
 const argv = yargs.options({
-  v: { alias:'videoUrls', type: 'array', demandOption: false, describe : 'List of URLs'},
+  v: { alias: 'videoUrls', type: 'array', demandOption: false, describe : 'List of URLs'},
   f: { alias: 'videoUrlsFile', type: 'string', demandOption: false, describe: 'Path to txt file containing the URLs (one URL for each line)'},
-  u: { alias:'username', type: 'string', demandOption: true, describe: 'Fiscal code' },
-  p: { alias:'password', type: 'string', demandOption: false },
-  o: { alias:'outputDirectory', type: 'string', default: 'videos' },
+  u: { alias: 'username', type: 'string', demandOption: true, describe: 'Fiscal code' },
+  p: { alias: 'password', type: 'string', demandOption: false },
+  o: { alias: 'outputDirectory', type: 'string', default: 'videos' },
   q: { alias: 'quality', type: 'number', demandOption: false, describe: 'Video Quality [0-5]'},
   k: { alias: 'noKeyring', type: 'boolean', default: false, demandOption: false, describe: 'Do not use system keyring'}
 })
@@ -73,8 +74,7 @@ function sanityChecks() {
 
 function readFileToArray(path) {
   path = path.substr(1,path.length-2);
-  var isWin = process.platform;
-  if (isWin === "win32" || isWin === "win64") // check OS
+  if (process.platform === "win32") // check OS
 	return fs.readFileSync(path).toString('utf-8').split('\r\n'); // Windows procedure
   return fs.readFileSync(path).toString('utf-8').split('\n'); // Bash procedure
 }
@@ -89,8 +89,7 @@ function parseVideoUrls(videoUrls) {
 const notDownloaded = []; // take trace of not downloaded videos
 
 async function downloadVideo(videoUrls, username, password, outputDirectory) {
-  // handle password
-  const keytar = require('keytar');
+  // Handling password
   if(password === undefined) { // password not passed as argument
     var password = {};
     if(argv.noKeyring === false) {
@@ -219,7 +218,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     parser.end();
     var parsedManifest = parser.manifest;
     var playlistsInfo = {};
-    var question = '\n';
+    var question = '';
     var count = 0;
     var audioObj = null;
     var videoObj = null;
@@ -243,12 +242,12 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     }
     else {
       if(argv.quality < 0 || argv.quality > count-1) {
-        term.yellow(`Desired quality is not available for this video (available range: 0-${count-1})\nI'm going to use the best resolution available: ${playlistsInfo[count-1]['resolution']}`);
+        term.yellow(`Desired quality is not available for this video (available range: 0-${count-1})\nI'm going to use the best resolution available: ${playlistsInfo[count-1]['resolution']}\n`);
         var res_choice = count-1;
       }
       else {
         var res_choice = argv.quality;
-        term.yellow(`Selected resolution: ${playlistsInfo[res_choice]['resolution']}`);
+        term.yellow(`Selected resolution: ${playlistsInfo[res_choice]['resolution']}\n`);
       }
     }
 
@@ -316,7 +315,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       break;
     }
     if (count==times) {
-    	term.red('\nError downloading this video.\n');
+    	term.red('\nPersistent errors during the download of the current video. Going to the next one.\n');
     	notDownloaded.push(videoUrl);
     	continue;
     }
@@ -353,7 +352,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       break;
     }
     if (count==times) {
-    	term.red('\nError downloading this video.\n');
+    	term.red('\nPersistent errors during the download of the current video. Going to the next one.\n');
     	notDownloaded.push(videoUrl);
     	continue;
     }
@@ -378,12 +377,12 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     rmDir(full_tmp_dir);
   }
   if (notDownloaded.length > 0)
-  	term.red('DONE! But these videos have not been downloaded: %s\n', notDownloaded);
+  	term.red('\nDONE! These videos have not been downloaded: %s\n', notDownloaded);
   else 
   	term.green("\nDONE! All requested videos have been downloaded!\n");
   notifier.notify({ //native done notification
 	title: 'UnicalDown',
-	message: 'Process done! See logs on terminal.'
+	message: 'DONE! See logs on terminal.'
   });
 }
 
@@ -457,7 +456,7 @@ function rmDir(dir, rmSelf) {
     });
   }
   if (rmSelf) {
-    // check if user want to delete the directory or just the files in this directory
+    // check if caller wants to delete the directory or just the files in this directory
     fs.rmdirSync(dir);
   }
 }
