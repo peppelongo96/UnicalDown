@@ -1,4 +1,4 @@
-# [UnicalDown v1.5.1](https://github.com/peppelongo96/UnicalDown/archive/v1.5.1.zip) ![visitors](https://visitor-badge.glitch.me/badge?page_id=unicaldown)
+# [UnicalDown v1.6](https://github.com/peppelongo96/UnicalDown/archive/v1.6.zip) ![visitors](https://visitor-badge.glitch.me/badge?page_id=unicaldown)
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
 This project is a fork of https://github.com/sup3rgiu/PoliDown* that was originally based on https://github.com/snobu/destreamer project.
@@ -21,13 +21,18 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 #### v.1.4
  - Provide a tracking of video URLs that took in error with download task
  - Add a macOS/Linux easy-launcher
- - README updating
+ - README update
 #### v.1.5
  - Fix readFileSync function for Unix-like systems
  - Notify natively terminated downloading process (if you are upgrading, please update dependencies by `$ npm install` command)
 #### v.1.5.1
  - Fix syntax error
- 
+#### v.1.6
+ - Prevent adding SnoreToast link in menu start programs list (Windows platform)
+ - Add `-t` option to disable system natively notification toast
+ - Delete wrong condition in readFileToArray function
+ - "Syntactic sugar"
+ - README update
 ## PREREQS
 
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
@@ -63,15 +68,16 @@ You can omit the password argument. UnicalDown will ask for it interactively and
 $ node unicaldown.js -h
 
 Options:
-  --version              Show version number                           [boolean]
-  -v, --videoUrls        List of URLs                                    [array]
-  -f, --videoUrlsFile    Path to txt file containing the URLs           [string]
-  -u, --username         Fiscal code                         [string] [required]
-  -p, --password                                                        [string]
-  -o, --outputDirectory                             [string] [default: "videos"]
-  -q, --quality          Video Quality [0-5]                            [number]
-  -k, --noKeyring        Do not use system keyring    [boolean] [default: false]
-  -h, --help             Show help                                     [boolean]
+  --version                      Show version number                                   [boolean]
+  -v, --videoUrls                List of URLs                                            [array]
+  -f, --videoUrlsFile            Path to txt file containing the URLs                   [string]
+  -u, --username                 Fiscal code                                 [string] [required]
+  -p, --password                                                                        [string]
+  -o, --outputDirectory                                             [string] [default: "videos"]
+  -q, --quality                  Video Quality [0-5]                                    [number]
+  -k, --noKeyring                Do not use system keyring            [boolean] [default: false]
+  -t, --noToastNotification      Disable system toast notification    [boolean] [default: false]
+  -h, --help                     Show help                                             [boolean]
 ```
 
 #### Multiple videos download:
@@ -95,7 +101,11 @@ $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VID
 $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1" -o "/my/path/here"
 ```
 
-#### Do not use system keyring to save the password:
+#### Do not allow system to save the password:
 ```
 $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1" -k
+```
+#### Disable system toast notification about finished download process:
+```
+$ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1" -t
 ```

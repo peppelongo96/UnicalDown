@@ -8,10 +8,8 @@ const https = require('https');
 const url = require('url');
 const path = require("path");
 const yargs = require("yargs");
-const keytar = require('keytar');
 const m3u8Parser = require("m3u8-parser");
 const request = require('request');
-const notifier = require('node-notifier');
 
 const argv = yargs.options({
   v: { alias: 'videoUrls', type: 'array', demandOption: false, describe : 'List of URLs'},
@@ -20,7 +18,8 @@ const argv = yargs.options({
   p: { alias: 'password', type: 'string', demandOption: false },
   o: { alias: 'outputDirectory', type: 'string', default: 'videos' },
   q: { alias: 'quality', type: 'number', demandOption: false, describe: 'Video Quality [0-5]'},
-  k: { alias: 'noKeyring', type: 'boolean', default: false, demandOption: false, describe: 'Do not use system keyring'}
+  k: { alias: 'noKeyring', type: 'boolean', default: false, demandOption: false, describe: 'Do not use system keyring'},
+  t: { alias: 'noToastNotification', type: 'boolean', default: false, demandOption: false, describe: 'Disable toast notification'}
 })
 .help('h')
 .alias('h', 'help')
@@ -30,6 +29,7 @@ const argv = yargs.options({
 .example('node $0 -u fiscalcode -v "https://web.microsoftstream.com/video/9611baf5-b12e-4782-82fb-b2gf68c05adc" -q 4\n', "Define default quality download to avoid manual prompt")
 .example('node $0 -u fiscalcode -v "https://web.microsoftstream.com/video/9611baf5-b12e-4782-82fb-b2gf68c05adc" -o "C:\\Lessons\\Videos"\n', "Define output directory (absoulte o relative path)")
 .example('node $0 -u fiscalcode -v "https://web.microsoftstream.com/video/9611baf5-b12e-4782-82fb-b2gf68c05adc" -k\n', "Do not save the password into system keyring")
+.example('node $0 -u fiscalcode -v "https://web.microsoftstream.com/video/9611baf5-b12e-4782-82fb-b2gf68c05adc" -t\n', "Disable system toast notification about finished download process")
 .argv;
 
 function sanityChecks() {
@@ -90,6 +90,7 @@ const notDownloaded = []; // take trace of not downloaded videos
 
 async function downloadVideo(videoUrls, username, password, outputDirectory) {
   // Handling password
+  const keytar = require('keytar');
   if(password === undefined) { // password not passed as argument
     var password = {};
     if(argv.noKeyring === false) {
@@ -380,10 +381,13 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   	term.red('\nDONE! These videos have not been downloaded: %s\n', notDownloaded);
   else 
   	term.green("\nDONE! All requested videos have been downloaded!\n");
-  notifier.notify({ //native done notification
-	title: 'UnicalDown',
-	message: 'DONE! See logs on terminal.'
-  });
+  if ( argv.noToastNotification===false ) {
+      require('node-notifier').notify({
+      title: 'UnicalDown',
+      message: 'DONE! See logs on terminal.',
+      appID: "https://nodejs.org/", // Such a smart assignment to avoid SnoreToast start menu link. Don't say to my mother.
+      }, function(error, response) {/*console.log(response);*/});
+  }
 }
 
 function doRequest(options) {
@@ -489,7 +493,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.5.1\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.6\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
