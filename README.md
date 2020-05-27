@@ -36,7 +36,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - "Syntactic sugar"
  - README update
  #### v.1.6.1
- - Fix npm installing error (semver)
+ - Fix npm installing error (semver warning)
  
 ## PREREQS
 
