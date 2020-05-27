@@ -493,7 +493,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.6\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.6.1\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
