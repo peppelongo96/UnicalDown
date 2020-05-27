@@ -1,4 +1,5 @@
-# [UnicalDown v1.6.1](https://github.com/peppelongo96/UnicalDown/archive/v1.6.1.zip) ![visitors](https://visitor-badge.glitch.me/badge?page_id=unicaldown)
+# [UnicalDown v1.6.1](https://github.com/peppelongo96/UnicalDown/archive/v1.6.1.zip) [![Github all releases](https://img.shields.io/github/downloads/peppelongo96/UnicalDown/total.svg)](https://GitHub.com/peppelongo96/UnicalDown/releases/)
+
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
 This project is a fork of https://github.com/sup3rgiu/PoliDown* that was originally based on https://github.com/snobu/destreamer project.
