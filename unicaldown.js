@@ -155,23 +155,29 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   for (let videoUrl of videoUrls) {
     if (videoUrl == "") continue; // jump empty url
     term.green(`\nStart downloading new video: ${videoUrl}\n`);
-    var videoID = videoUrl.substring(videoUrl.indexOf("/video/")+7, videoUrl.length).substring(0, 36); // use the video id (36 character after '/video/') as temp dir name
-    var full_tmp_dir = path.join(argv.outputDirectory, videoID);
-    var headers = {
-      'Cookie': cookie
-    };
-    var options = {
-      url: 'https://euwe-1.api.microsoftstream.com/api/videos/'+videoID+'?api-version=1.0-private',
-      headers: headers
-    };
-    var response = await doRequest(options);
+	try {
+      var videoID = videoUrl.substring(videoUrl.indexOf("/video/")+7, videoUrl.length).substring(0, 36); // use the video id (36 character after '/video/') as temp dir name
+      var full_tmp_dir = path.join(argv.outputDirectory, videoID);
+      var headers = {
+        'Cookie': cookie
+      };
+      var options = {
+        url: 'https://euwe-1.api.microsoftstream.com/api/videos/'+videoID+'?api-version=1.0-private',
+        headers: headers
+      };
+      var response = await doRequest(options);
+	} catch (e) {
+	  term.red('\nInvalid URL. Going to the next one.\n');
+      notDownloaded.push(videoUrl);
+      continue;
+	}
     const obj = JSON.parse(response);
     if(obj.hasOwnProperty('error')) {
       let errorMsg = '';
       if(obj.error.code === 'Forbidden') {
-        errorMsg = '\nYou are not authorized to access this video.\n'
+        errorMsg = '\nYou are not authorized to access the current video. Going to the next one.\n'
       } else {
-        errorMsg = '\nError downloading this video.\n'
+        errorMsg = '\nUnable to download the current video. Going to the next one.\n'
       }
       term.red(errorMsg);
       notDownloaded.push(videoUrl);
@@ -201,19 +207,26 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       // console.log("no upload date found");
     }
 
-    let playbackUrls = obj.playbackUrls;
-    let hlsUrl = '';
-    for(var elem in playbackUrls) {
-      if(playbackUrls[elem]['mimeType'] === 'application/vnd.apple.mpegurl') {
-        var u = url.parse(playbackUrls[elem]['playbackUrl'], true);
-        hlsUrl = u.query.playbackurl
-        break;
+    try {
+      let playbackUrls = obj.playbackUrls;
+      var hlsUrl = '';
+      for(var elem in playbackUrls) {
+        if(playbackUrls[elem]['mimeType'] === 'application/vnd.apple.mpegurl') {
+          var u = url.parse(playbackUrls[elem]['playbackUrl'], true);
+          hlsUrl = u.query.playbackurl
+          break;
+        }
       }
-    }
-    var options = {
-      url: hlsUrl,
-    };
-    var response = await doRequest(options);
+      var options = {
+        url: hlsUrl,
+      };
+      var response = await doRequest(options);
+	} catch (e) {
+	  term.red('\nCan\'t get current video HLS-URL. Going to the next one.\n');
+      notDownloaded.push(videoUrl);
+	  rmDir(full_tmp_dir);
+      continue;
+	}
     var parser = new m3u8Parser.Parser();
     parser.push(response);
     parser.end();
@@ -255,37 +268,51 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     videoObj = playlistsInfo[res_choice];
     const basePlaylistsUrl = hlsUrl.substring(0, hlsUrl.lastIndexOf("/") + 1);
     // **** VIDEO ****
-    var videoLink = basePlaylistsUrl + videoObj['uri'];
-    var headers = {
-      'Cookie': cookie
-    };
-    var options = {
-      url: videoLink,
-      headers: headers
-    };
+	try {
+      var videoLink = basePlaylistsUrl + videoObj['uri'];
+      var headers = {
+        'Cookie': cookie
+      };
+      var options = {
+        url: videoLink,
+        headers: headers
+      };
+	  var response = await doRequest(options);
+	} catch (e) {
+	  term.red('\nCan\'t get video playlist-base of the current URL. Going to the next one.\n');
+      notDownloaded.push(videoUrl);
+	  rmDir(full_tmp_dir);
+      continue;
+	}
     // *** Get protection key (same key for video and audio segments) ***
-    var response = await doRequest(options);
-    var parser = new m3u8Parser.Parser();
-    parser.push(response);
-    parser.end();
-    var parsedManifest = parser.manifest;
-    const keyUri = parsedManifest['segments'][0]['key']['uri'];
-    var options = {
-      url: keyUri,
-      headers: headers,
-      encoding: null
-    };
-    const key = await doRequest(options);
-    var keyReplacement = '';
-    if (path.isAbsolute(full_tmp_dir) || full_tmp_dir[0] == '~') // absolute path
-      var local_key_path = path.join(full_tmp_dir, 'my.key');
-    else
-      var local_key_path = path.join(process.cwd(), full_tmp_dir, 'my.key'); // requires absolute path in order to replace the URI inside the m3u8 file
-    fs.writeFileSync(local_key_path, key);
-    if(process.platform === 'win32')
-      keyReplacement = await 'file:' + local_key_path.replace(/\\/g, '/');
-    else
-      keyReplacement = 'file://' + local_key_path;
+	try {
+      var parser = new m3u8Parser.Parser();
+      parser.push(response);
+      parser.end();
+      var parsedManifest = parser.manifest;
+      var keyUri = parsedManifest['segments'][0]['key']['uri'];
+      var options = {
+        url: keyUri,
+        headers: headers,
+        encoding: null
+      };
+      const key = await doRequest(options);
+      var keyReplacement = '';
+      if (path.isAbsolute(full_tmp_dir) || full_tmp_dir[0] == '~') // absolute path
+        var local_key_path = path.join(full_tmp_dir, 'my.key');
+      else
+        var local_key_path = path.join(process.cwd(), full_tmp_dir, 'my.key'); // requires absolute path in order to replace the URI inside the m3u8 file
+      fs.writeFileSync(local_key_path, key);
+      if(process.platform === 'win32')
+        keyReplacement = await 'file:' + local_key_path.replace(/\\/g, '/');
+      else
+        keyReplacement = 'file://' + local_key_path;
+	} catch (e) {
+	  term.red('\nCan\'t get current playlist protection key. Going to the next URL.\n');
+      notDownloaded.push(videoUrl);
+	  rmDir(full_tmp_dir);
+      continue;
+	}
     // creates two m3u8 files:
     // - video_full.m3u8: to download all segements (replacing realtive segements path with absolute remote url)
     // - video_tmp.m3u8: used by ffmpeg to merge all downloaded segements (in this one we replace the remote key URI with the absoulte local path of the key downloaded above)
@@ -316,18 +343,26 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       break;
     }
     if (count==times) {
-    	term.red('\nPersistent errors during the download of the current video. Going to the next one.\n');
+    	term.red('\nPersistent errors during the download of video-fragments. Going to the next URL.\n');
     	notDownloaded.push(videoUrl);
+		rmDir(full_tmp_dir);
     	continue;
     }
     // **** AUDIO ****
-    var audioLink = basePlaylistsUrl + audioObj['uri'];
-    var options = {
-      url: audioLink,
-      headers: headers
-    };
+	try {
+      var audioLink = basePlaylistsUrl + audioObj['uri'];
+      var options = {
+        url: audioLink,
+        headers: headers
+      };
+	  var response = await doRequest(options);
+	} catch (e) {
+	  term.red('\nCan\'t get audio playlist-base of the current URL. Going to the next one.\n');
+      notDownloaded.push(videoUrl);
+	  rmDir(full_tmp_dir);
+      continue;
+	}
     // same as above but for audio segements
-    var response = await doRequest(options);
     var baseUri = audioLink.substring(0, audioLink.lastIndexOf("/") + 1);
     var audio_full = await response.replace(new RegExp('Fragments', 'g'), baseUri+'Fragments');
     var audio_tmp = await response.replace(keyUri, keyReplacement);
@@ -353,8 +388,9 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       break;
     }
     if (count==times) {
-    	term.red('\nPersistent errors during the download of the current video. Going to the next one.\n');
+    	term.red('\nPersistent errors during the download of audio-fragments. Going to the next URL.\n');
     	notDownloaded.push(videoUrl);
+		rmDir(full_tmp_dir);
     	continue;
     }
     // *** MERGE audio and video segements in an mp4 file ***
@@ -493,7 +529,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.6.1\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
