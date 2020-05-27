@@ -26,7 +26,8 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - README update
 #### v.1.5
  - Fix readFileSync function for Unix-like systems
- - Notify natively terminated downloading process. **Clean install is recommended. If you prefer to upgrade, please update dependencies by** `$ npm install` **command**.
+ - Notify natively terminated downloading process 
+ **Clean install is recommended. If you prefer to upgrade, please update dependencies by** `$ npm install` **command**.
 #### v.1.5.1
  - Fix syntax error
 #### v.1.6
