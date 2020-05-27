@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/peppelongo96/UnicalDown"
   },
-  "version": "1.6",
+  "version": "1.6.0",
   "description": "Locally save Microsoft Stream not-download-enabled videos uploaded by Università della Calabria",
   "main": "unicaldown.js",
   "keywords": [],
