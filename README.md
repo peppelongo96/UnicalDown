@@ -31,7 +31,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - Fix syntax error
 #### v.1.6
  - Prevent adding SnoreToast link in menu start programs list (Windows platform)
- - Add `-t` option to disable system natively notification toast
+ - Add `-t` option to disable native system notification toast
  - Delete wrong condition in readFileToArray function
  - "Syntactic sugar"
  - README update
@@ -110,7 +110,7 @@ $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VID
 ```
 $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1" -k
 ```
-#### Disable system toast notification about finished download process:
+#### Disable native system toast notification on finished download process:
 ```
 $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VIDEO-1" -t
 ```
