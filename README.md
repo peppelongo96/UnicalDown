@@ -20,22 +20,22 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - Make aria2 downloading procedure more consistent and reliable
  - Code adjustments in order to a more lightweight execution
  - Added a second double-clickable script launcher to temporarily suspend PC sleeping (Windows only)
-#### v.1.4
+#### [v.1.4](https://github.com/peppelongo96/UnicalDown/archive/v1.4.zip)
  - Provide a tracking of video URLs that took in error with download task
  - Add a macOS/Linux easy-launcher
  - README update
-#### v.1.5
+#### [v.1.5](https://github.com/peppelongo96/UnicalDown/archive/v1.5.zip)
  - Fix readFileSync function for Unix-like systems
  - Notify natively terminated downloading process. **Do a clean installation or update dependencies by** `$ npm install` **command**
-#### v.1.5.1
+#### [v.1.5.1](https://github.com/peppelongo96/UnicalDown/archive/v1.5.1.zip)
  - Fix syntax error
-#### v.1.6
+#### [v.1.6](https://github.com/peppelongo96/UnicalDown/archive/v1.6.zip)
  - Prevent adding SnoreToast link in menu start programs list (Windows platform)
  - Add `-t` option to disable native system notification toast
  - Delete wrong condition in readFileToArray function
  - "Syntactic sugar"
  - README update
- #### v.1.6.1
+ #### [v.1.6.1](https://github.com/peppelongo96/UnicalDown/archive/v1.6.1.zip)
  - Fix npm installing error (semver warning)
  
 ## PREREQS
