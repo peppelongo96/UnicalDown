@@ -413,16 +413,18 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     // remove tmp dir
     rmDir(full_tmp_dir);
   }
-  if (notDownloaded.length > 0)
-  	term.red('\nDONE! These videos have not been downloaded: %s\n', notDownloaded);
+  if (notDownloaded.length > 0) {
+    term.red('\nDONE! Following videos have not been downloaded:\n');
+	for (const video of notDownloaded) term.red(video+'\n');
+  }
   else 
   	term.green("\nDONE! All requested videos have been downloaded!\n");
   if ( argv.noToastNotification===false ) {
-      require('node-notifier').notify({
-      title: 'UnicalDown',
-      message: 'DONE! See logs on terminal.',
-      appID: "https://nodejs.org/", // Such a smart assignment to avoid SnoreToast start menu link. Don't say to my mother.
-      }, function(error, response) {/*console.log(response);*/});
+    require('node-notifier').notify({
+    title: 'UnicalDown',
+    message: 'DONE! See logs on terminal.',
+    appID: "https://nodejs.org/", // Such a smart assignment to avoid SnoreToast start menu link. Don't say to my mother.
+    }, function(error, response) {/*console.log(response);*/});
   }
 }
 
@@ -529,7 +531,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.7\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7.1\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
