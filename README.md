@@ -26,7 +26,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - README update
 #### [v1.5](https://github.com/peppelongo96/UnicalDown/archive/v1.5.zip)
  - Fix readFileSync function for Unix-like systems
- - Notify natively terminated downloading process. **Do a clean installation or update dependencies by** `$ npm install` **command**
+ - Notify natively terminated downloading process. **Do a clean installation or update dependencies by** `$ npm install` **command**. See more following [default usage](https://github.com/peppelongo96/UnicalDown#default-usage)
 #### [v1.5.1](https://github.com/peppelongo96/UnicalDown/archive/v1.5.1.zip)
  - Fix syntax error
 #### [v1.6](https://github.com/peppelongo96/UnicalDown/archive/v1.6.zip)
@@ -48,7 +48,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However i take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
 
-### Outstanding bug
+### Outstandings bugs
 Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point onwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions (especially) about are accepted.
  
 ## PREREQS
@@ -78,7 +78,8 @@ $ node unicaldown.js -u fiscalcode -v "https://web.microsoftstream.com/video/VID
 
 $ node unicaldown.js -u fiscalcode -f urlsFile.txt
 ```
-You can omit the password argument. UnicalDown will ask for it interactively and then save it securely in local system's keychain for the next use.
+- You can omit the password argument. UnicalDown will ask for it interactively and then save it securely in local system's keychain for the next use.
+- Starting from [v1.5](https://github.com/peppelongo96/UnicalDown#v15), [node-notifier](https://www.npmjs.com/package/node-notifier) module is added to enable (by default) a system of native notification for terminated downloading process. For this, *if you are upgrading*, you need a clean installation or to just update dependencies by `$ npm install` command.
 
 #### Show options:
 ```
