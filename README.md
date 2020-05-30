@@ -1,4 +1,4 @@
-# [UnicalDown v1.7.1](https://github.com/peppelongo96/UnicalDown/archive/v1.7.1.zip) 
+# [UnicalDown v1.7.2](https://github.com/peppelongo96/UnicalDown/archive/v1.7.2.zip) 
 [![GitHub license](https://img.shields.io/github/license/peppelongo96/UnicalDown.svg)](https://github.com/peppelongo96/UnicalDown/blob/master/LICENSE) [![made-with-Node.js](https://img.shields.io/badge/Made%20with-Node.js-1f425f.svg)](https://nodejs.org/it/) [![GitHub contributors](https://img.shields.io/github/contributors/peppelongo96/UnicalDown.svg)](https://GitHub.com/peppelongo96/UnicalDown/graphs/contributors/) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://peppelongo96.github.io)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
@@ -42,9 +42,13 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
  - More accurate log console
 #### [v1.7.1](https://github.com/peppelongo96/UnicalDown/archive/v1.7.1.zip)
  - More readable log console
+#### [v1.7.2](https://github.com/peppelongo96/UnicalDown/archive/v1.7.2.zip)
+ - README update: see [Disclaimer](https://github.com/peppelongo96/UnicalDown#disclaimer) and [outstanding bug](https://github.com/peppelongo96/UnicalDown#outstanding-bug) sections
+ 
+### Disclaimer
+Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However i take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
  
 ## PREREQS
-
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
 * [**aria2**](https://github.com/aria2/aria2/releases): this needs to be in your `$PATH` (for example, copy aria2c.exe to C:\Windows). UnicalDown calls `aria2c` with a bunch of arguments in order to improve the download speed.
 * [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), in [`$PATH`](https://www.thewindowsclub.com/how-to-install-ffmpeg-on-windows-10). On Windows, the [nightly build](https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-20200309-608b8a8-win64-static.zip) is recommended.
@@ -64,6 +68,9 @@ An executable .bat file is provided. After properly settled it, just double-clic
 Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *Coffee version* just starts and also kills Coffee task after UnicalDown procedure is finished. In case of "illegal" killing problems (e.g. cmd was prematurely closed), you can exit from Coffee by right-clicking on its properly icon in notification area.
 ### for macOS/Linux
 An executable .sh file is provided. **It's necessary to make it runnable**: execute `chmod 777 this_launcher.sh` on terminal (obviously, you must navigate to project folder before). Next, **always run** the .sh script **using terminal**.
+
+## OUTSTANDING BUG
+Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point omwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions about are accepted.
 
 ## Default usage
 ```

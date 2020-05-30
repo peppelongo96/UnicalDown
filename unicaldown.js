@@ -167,7 +167,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       };
       var response = await doRequest(options);
 	} catch (e) {
-	  term.red('\nInvalid URL. Going to the next one.\n');
+	  term.red('\nUndefined URL request response. Going to the next one.\n');
       notDownloaded.push(videoUrl);
       continue;
 	}
@@ -414,8 +414,9 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     rmDir(full_tmp_dir);
   }
   if (notDownloaded.length > 0) {
-    term.red('\nDONE! Following videos have not been downloaded:\n');
+    term.red('\nDONE! Following videos have not been downloaded:\n\n');
 	for (const video of notDownloaded) term.red(video+'\n');
+	term.red('\n!! Please try to download them one more time at least. If downloading errors were caused from expired cookies, script will do its work by restarting it !!\n');
   }
   else 
   	term.green("\nDONE! All requested videos have been downloaded!\n");
@@ -531,7 +532,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.7.1\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7.2\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
