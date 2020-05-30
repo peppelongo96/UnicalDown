@@ -43,10 +43,13 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 #### [v1.7.1](https://github.com/peppelongo96/UnicalDown/archive/v1.7.1.zip)
  - More readable log console
 #### [v1.7.2](https://github.com/peppelongo96/UnicalDown/archive/v1.7.2.zip)
- - README update: see [Disclaimer](https://github.com/peppelongo96/UnicalDown#disclaimer) and [outstanding bug](https://github.com/peppelongo96/UnicalDown#outstanding-bug) sections
+ - README update: see [disclaimer](https://github.com/peppelongo96/UnicalDown#disclaimer) and [outstanding bug](https://github.com/peppelongo96/UnicalDown#outstanding-bug) sections
  
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However i take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
+
+## Outstanding bug
+Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point omwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions about are accepted.
  
 ## PREREQS
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
@@ -68,9 +71,6 @@ An executable .bat file is provided. After properly settled it, just double-clic
 Coffee is a portable .exe from https://sourceforge.net/projects/coffee-sc/ open source project. It provides to prevent PC standby when downloading. *Coffee version* just starts and also kills Coffee task after UnicalDown procedure is finished. In case of "illegal" killing problems (e.g. cmd was prematurely closed), you can exit from Coffee by right-clicking on its properly icon in notification area.
 ### for macOS/Linux
 An executable .sh file is provided. **It's necessary to make it runnable**: execute `chmod 777 this_launcher.sh` on terminal (obviously, you must navigate to project folder before). Next, **always run** the .sh script **using terminal**.
-
-## OUTSTANDING BUG
-Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point omwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions about are accepted.
 
 ## Default usage
 ```
