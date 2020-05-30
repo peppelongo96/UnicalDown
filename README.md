@@ -49,7 +49,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However i take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
 
 ### Outstanding bug
-Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point omwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions about are accepted.
+Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point onwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions (especially) about are accepted.
  
 ## PREREQS
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
