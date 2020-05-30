@@ -49,7 +49,7 @@ This project is a fork of https://github.com/sup3rgiu/PoliDown* that was origina
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However i take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
 
 ### Important notes
-- Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point onwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft). Any suggestions (especially) about are accepted.
+- Script does not provided yet an effective way to refresh the access token i.e. cookies. So the execution stops to download valid URLs also from a certain point onwards, if script runs for one hour or so (seems such a strict max-age session cookies. Damn Microsoft.). Any suggestions (especially) about are accepted.
 - Starting from [v1.5](https://github.com/peppelongo96/UnicalDown#v15), [node-notifier](https://www.npmjs.com/package/node-notifier) module is added to enable (by default) a system of native notification for terminated downloading process. For this and to avoid any not expected bug, *if you are upgrading*, you need a clean installation or to just update dependencies by `$ npm install` command.
  
 ## PREREQS
