@@ -56,11 +56,11 @@ Hopefully this doesn't break the end user agreement for Microsoft Stream. Since 
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
 * [**aria2**](https://github.com/aria2/aria2/releases): this needs to be in your `$PATH`. Choose the latest release.
 * [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), always in your `$PATH`. On Windows, a nightly build (i.e. Git version) is recommended.
-* A stable connection is recommended. Video fragments acquiring is a timed procedure due to Stream m3u8 source.
+* A **stable connection** is **recommended**. Video fragments acquiring is a timed procedure due to Stream m3u8 source.
 
 ## INSTALLATION INSTRUCTIONS
 ### Windows
-Videoguide provided by original PoliDown project: http://www.youtube.com/watch?v=iZgea4t5YW4. Just intending "UnicalDown" or "unicaldown" instead of "PoliDown" or "polidown". **After finishing the installation successfully, reboot to avoid any headless chromium booting issue**.
+[Videoguide](http://www.youtube.com/watch?v=iZgea4t5YW4) provided by original PoliDown project. Just intending "UnicalDown" or "unicaldown" instead of "PoliDown" or "polidown". **After finishing the installation successfully, reboot to avoid any headless chromium booting issue**.
 ### macOS/Linux
 Installation is pretty much the same.
 
