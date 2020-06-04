@@ -3,7 +3,7 @@
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
 
-This project is a fork of https://github.com/sup3rgiu/PoliDown* that was originally based on https://github.com/snobu/destreamer project.
+This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that was originally based on [destreamer](https://github.com/snobu/destreamer) project.
 
 ### Changelog
 #### Initial version
