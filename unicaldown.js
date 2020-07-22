@@ -129,11 +129,11 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   console.log('...Navigating to Microsoft Stream login page...');
   await page.goto('https://web.microsoftstream.com/', { waitUntil: 'networkidle2' });
   console.log('...Logging in...');
-  const avanti = await page.waitForSelector('#idSIButton9');
+  const avanti = await page.waitForSelector('input[id="idSIButton9"]');
   await page.type('input[type=email]', username+"@studenti.unical.it");
   avanti.click();
   await sleep(1000);
-  const accedi = await page.waitForSelector('#idSIButton9');
+  const accedi = await page.waitForSelector('input[id="idSIButton9"]');
   await page.type('input[type=password]', password);
   accedi.click();
   // Performing log in
