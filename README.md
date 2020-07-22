@@ -1,4 +1,4 @@
-# [UnicalDown v1.7.2](https://github.com/peppelongo96/UnicalDown/archive/v1.7.2.zip) 
+# [UnicalDown v1.7.3](https://github.com/peppelongo96/UnicalDown/archive/v1.7.3.zip) 
 [![GitHub license](https://img.shields.io/github/license/peppelongo96/UnicalDown.svg)](https://github.com/peppelongo96/UnicalDown/blob/master/LICENSE) [![made-with-Node.js](https://img.shields.io/badge/Made%20with-Node.js-1f425f.svg)](https://nodejs.org/it/) [![GitHub contributors](https://img.shields.io/github/contributors/peppelongo96/UnicalDown.svg)](https://GitHub.com/peppelongo96/UnicalDown/graphs/contributors/) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://peppelongo96.github.io)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
@@ -26,7 +26,7 @@ This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that
  - README update
 #### [v1.5](https://github.com/peppelongo96/UnicalDown/archive/v1.5.zip)
  - Fix readFileSync function for Unix-like systems
- - Notify natively terminated downloading process. **Do a clean installation or update dependencies by** `$ npm install` **command**. See more following [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
+ - Notify natively terminated downloading process **Do a clean installation or execute ** `$ npm install` **command**. See more following [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
 #### [v1.5.1](https://github.com/peppelongo96/UnicalDown/archive/v1.5.1.zip)
  - Fix syntax error
 #### [v1.6](https://github.com/peppelongo96/UnicalDown/archive/v1.6.zip)
@@ -44,6 +44,9 @@ This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that
  - More readable log console
 #### [v1.7.2](https://github.com/peppelongo96/UnicalDown/archive/v1.7.2.zip)
  - README update: please follow [disclaimer](https://github.com/peppelongo96/UnicalDown#disclaimer) and [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
+#### [v1.7.3](https://github.com/peppelongo96/UnicalDown/archive/v1.7.3.zip)
+ - Updating and upgrading project dependencies **Do a clean installation or execute ** `$ npm install` **command**
+ - README update: please follow [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
  
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However I take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.

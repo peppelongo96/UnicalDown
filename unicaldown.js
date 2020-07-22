@@ -123,7 +123,10 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
   console.log('\nLaunching headless Chromium to perform the OpenID Connect dance...');
   const browser = await puppeteer.launch({
     headless: true, // Switch to false if you need to login interactively
-    args: ['--disable-dev-shm-usage', '--lang=it-IT']
+    args: ['--disable-dev-shm-usage',
+           '--fast-start',
+           '--no-sandbox',
+		   '--lang=it-IT']
   });
   const page = await browser.newPage();
   console.log('...Navigating to Microsoft Stream login page...');
@@ -532,7 +535,7 @@ async function extractCookies(page) {
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
 
-term.green('UnicalDown v1.7.2\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7.3\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
