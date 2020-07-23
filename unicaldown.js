@@ -52,7 +52,7 @@ function sanityChecks() {
   if (argv.videoUrls === undefined && argv.videoUrlsFile === undefined) {
     term.red("Missing URLs arguments.\n");
     process.exit();
-  }        
+  }
   if (argv.videoUrls !== undefined && argv.videoUrlsFile !== undefined) {
     term.red("Can't get URLs from both argument.\n");
     process.exit();
@@ -60,7 +60,7 @@ function sanityChecks() {
   if (argv.videoUrlsFile !== undefined)
     argv.videoUrls = argv.videoUrlsFile; // merge argument
   if (!fs.existsSync(argv.outputDirectory)) {
-    if (path.isAbsolute(argv.outputDirectory) || argv.outputDirectory[0] == '~') 
+    if (path.isAbsolute(argv.outputDirectory) || argv.outputDirectory[0] == '~')
       console.log('Creating output directory: ' + argv.outputDirectory);
     else console.log('Creating output directory: ' + process.cwd() + path.sep + argv.outputDirectory);
     try {
@@ -114,8 +114,8 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       try {
         await keytar.setPassword("UnicalDown", username, password);
         console.log("Your password has been saved. Next time, you can avoid entering it!");
-      } catch(e) { 
-        // X11 is missing. Can't use keytar 
+      } catch(e) {
+        // X11 is missing. Can't use keytar
       }
     }
   }
@@ -128,17 +128,23 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
            '--no-sandbox',
 		   '--lang=it-IT']
   });
+
   const page = await browser.newPage();
   console.log('...Navigating to Microsoft Stream login page...');
   await page.goto('https://web.microsoftstream.com/', { waitUntil: 'networkidle2' });
+
   console.log('...Logging in...');
+
   const avanti = await page.waitForSelector('input[id="idSIButton9"]');
   await page.type('input[type=email]', username+"@studenti.unical.it");
   avanti.click();
+
   await sleep(1000);
+
   const accedi = await page.waitForSelector('input[id="idSIButton9"]');
   await page.type('input[type=password]', password);
   accedi.click();
+
   // Performing log in
   try {
     await page.waitForSelector('#passwordError', { timeout: 5000 });
@@ -149,20 +155,47 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     const no = await page.waitForSelector('input[id="idBtn_Back"]', { timeout: 5000 });
     no.click();
   } catch (error) {}
-  await browser.waitForTarget(target => target.url().includes('microsoftstream.com/'), { timeout: 100000 });
-  console.log('We are now logged.\n...Gotting required authentication cookies...');
-  await sleep (5000);
-  const cookie = await extractCookies(page);
-  console.log("Authentication cookies got.\nAt this point Chromium's job is done, shutting it down...");
+  await browser.waitForTarget(target => target.url().endsWith('microsoftstream.com/'), { timeout: 100000 });
+
+  console.log('Logged in');
+
+  let session = null;
+  let tries = 1;
+  while (!session) {
+    try {
+      session = await page.evaluate(
+        () => {
+          return {
+            AccessToken: sessionInfo.AccessToken,
+            ApiGatewayUri: sessionInfo.ApiGatewayUri,
+            ApiGatewayVersion: sessionInfo.ApiGatewayVersion
+          };
+        }
+      );
+    }
+    catch (error) {
+      if (tries > 5) {
+        console.log('Cannot evaluate session! \nExiting...');
+        process.exit(555);
+      }
+      session = null;
+      tries++;
+      await page.waitFor(3000);
+    }
+  }
+
+  console.log("Got session.\nAt this point Chromium's job is done, shutting it down...");
   await browser.close(); // Aria1 does not require browser
+
+
   for (let videoUrl of videoUrls) {
     if (videoUrl == "") continue; // jump empty url
     term.green(`\nStart downloading new video: ${videoUrl}\n`);
 	try {
       var videoID = videoUrl.substring(videoUrl.indexOf("/video/")+7, videoUrl.length).substring(0, 36); // use the video id (36 character after '/video/') as temp dir name
       var full_tmp_dir = path.join(argv.outputDirectory, videoID);
-      var headers = {
-        'Cookie': cookie
+      const headers = {
+        'Authorization': 'Bearer ' + session.AccessToken
       };
       var options = {
         url: 'https://euwe-1.api.microsoftstream.com/api/videos/'+videoID+'?api-version=1.0-private',
@@ -200,7 +233,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       let year = date.getFullYear();
       let month = date.getMonth()+1;
       let dt = date.getDate();
-      if (dt < 10) 
+      if (dt < 10)
         dt = '0' + dt;
       if (month < 10)
         month = '0' + month;
@@ -273,8 +306,8 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     // **** VIDEO ****
 	try {
       var videoLink = basePlaylistsUrl + videoObj['uri'];
-      var headers = {
-        'Cookie': cookie
+      const headers = {
+        'Authorization': 'Bearer ' + session.AccessToken
       };
       var options = {
         url: videoLink,
@@ -327,16 +360,16 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     const video_tmp_path = path.join(full_tmp_dir, 'video_tmp.m3u8');
     const video_segments_path = path.join(full_tmp_dir, 'video_segments');
     let times = 5;
-    count = 0; 
+    count = 0;
     while (count < times) {// make aria2 multithreading download more consistent
       try {
         fs.writeFileSync(video_full_path, video_full);
         fs.writeFileSync(video_tmp_path, video_tmp);
     		// download async. I'm Speed
-        var aria2cCmd = 'aria2c -i "' + video_full_path + '" -j 16 -x 16 -d "' + path.join(full_tmp_dir, 'video_segments') + '" --header="Cookie:' + cookie + '"';
+        var aria2cCmd = 'aria2c -i "' + video_full_path + '" -j 16 -x 16 -d "' + path.join(full_tmp_dir, 'video_segments'); //+ '" --header="Cookie:' + cookie + '"';
         var result = execSync(aria2cCmd, { stdio: 'inherit' });
-      } catch (e) { 
-        term.green('\n\nOops! We lost some video fragment! Trying one more time...\n\n');	
+      } catch (e) {
+        term.green('\n\nOops! We lost some video fragment! Trying one more time...\n\n');
         rmDir(video_segments_path);
         fs.unlinkSync(video_tmp_path);
         fs.unlinkSync(video_full_path);
@@ -378,10 +411,10 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
       try {
         fs.writeFileSync(audio_full_path, audio_full);
         fs.writeFileSync(audio_tmp_path, audio_tmp);
-        var aria2cCmd = 'aria2c -i "' + audio_full_path + '" -j 16 -x 16 -d "' + audio_segments_path + '" --header="Cookie:' + cookie + '"';
+        var aria2cCmd = 'aria2c -i "' + audio_full_path + '" -j 16 -x 16 -d "' + audio_segments_path; //'" --header="Cookie:' + cookie + '"';
         var result = execSync(aria2cCmd, { stdio: 'inherit' });
-      } catch (e) { 
-        term.green('\n\nOops! We lost some audio fragment! Trying one more time...\n\n');	
+      } catch (e) {
+        term.green('\n\nOops! We lost some audio fragment! Trying one more time...\n\n');
         rmDir(audio_segments_path);
         fs.unlinkSync(audio_tmp_path);
         fs.unlinkSync(audio_full_path);
@@ -421,7 +454,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
 	for (const video of notDownloaded) term.red(video+'\n');
 	term.red('\n!! Please try to download them one more time at least. If downloading errors were caused from expired cookies, script will do its work by restarting it !!\n');
   }
-  else 
+  else
   	term.green("\nDONE! All requested videos have been downloaded!\n");
   if ( argv.noToastNotification===false ) {
     require('node-notifier').notify({
@@ -488,9 +521,9 @@ function rmDir(dir, rmSelf) {
   rmSelf = (rmSelf === undefined) ? true : rmSelf;
   dir = dir + "/";
   try {
-    files = fs.readdirSync(dir); 
+    files = fs.readdirSync(dir);
   } catch (e) {
-    console.log("!Oops, directory not exist."); return; 
+    console.log("!Oops, directory not exist."); return;
   }
   if (files.length > 0) {
     files.forEach(function(x, i) {
@@ -511,6 +544,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+/*
 async function extractCookies(page) {
   var jar = await page.cookies("https://.api.microsoftstream.com");
   var authzCookie = jar.filter(c => c.name === 'Authorization_Api')[0];
@@ -534,6 +568,7 @@ async function extractCookies(page) {
   }
   return `Authorization=${authzCookie.value}; Signature=${sigCookie.value}`;
 }
+*/
 
 term.green('UnicalDown v1.7.3\nFork powered by @peppelongo96\n');
 sanityChecks();
