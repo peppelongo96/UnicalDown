@@ -14,9 +14,9 @@
     "keytar": "^6.0.1",
     "m3u8-parser": "^4.4.0",
     "node-notifier": "^7.0.2",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^5.2.1",
     "request": "^2.88.2",
-    "terminal-kit": "^1.40.0",
+    "terminal-kit": "^1.41.0",
     "yargs": "^15.4.1"
   }
 }
