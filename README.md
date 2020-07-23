@@ -46,7 +46,7 @@ This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that
  - README update: please follow [disclaimer](https://github.com/peppelongo96/UnicalDown#disclaimer) and [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
 #### [v1.7.3](https://github.com/peppelongo96/UnicalDown/archive/v1.7.3.zip)
  - Updating and upgrading project dependencies. **Do a clean installation or execute** `$ npm install` **command**
- - README update: please follow point 1 of [important notes](https://github.com/peppelongo96/UnicalDown#important-notes) EDIT paragraph
+ - README update: please follow EDIT paragraph of point 1 in [important notes](https://github.com/peppelongo96/UnicalDown#important-notes)
  
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However I take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
