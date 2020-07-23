@@ -194,7 +194,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
 	try {
       var videoID = videoUrl.substring(videoUrl.indexOf("/video/")+7, videoUrl.length).substring(0, 36); // use the video id (36 character after '/video/') as temp dir name
       var full_tmp_dir = path.join(argv.outputDirectory, videoID);
-      const headers = {
+      var headers = {
         'Authorization': 'Bearer ' + session.AccessToken
       };
       var options = {
@@ -306,7 +306,7 @@ async function downloadVideo(videoUrls, username, password, outputDirectory) {
     // **** VIDEO ****
 	try {
       var videoLink = basePlaylistsUrl + videoObj['uri'];
-      const headers = {
+      var headers = {
         'Authorization': 'Bearer ' + session.AccessToken
       };
       var options = {
