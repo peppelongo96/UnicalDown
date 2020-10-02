@@ -62,12 +62,12 @@ The fix could be introduced also in UnicalDown by rebasing only the access token
 ## PREREQS
 * [**Node.js**](https://nodejs.org/it/download/): anything above v8.0 seems to work.
 * [**aria2**](https://github.com/aria2/aria2/releases): this needs to be in your `$PATH`. Choose the latest release.
-* [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), always in your `$PATH`. On Windows, a nightly build (i.e. Git version) is recommended.
+* [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), always in your `$PATH`. On Windows, the release-full version is recommended.
 * A **stable connection** is **recommended**. Video fragments acquiring is a timed procedure due to Stream m3u8 source.
-### Last release [v1.7.4](https://github.com/peppelongo96/UnicalDown/archive/v1.7.4.zip) tested with:
-* [Node 12.18.4 LTS](https://nodejs.org/dist/v12.18.4/node-v12.18.4-x64.msi)
-* [aria2 1.35.0](https://github.com/aria2/aria2/releases/download/release-1.35.0/aria2-1.35.0-win-64bit-build1.zip)
-* [ffmpeg 4.3.1](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.zip)
+#### Last release [v1.7.4](https://github.com/peppelongo96/UnicalDown/archive/v1.7.4.zip) tested on Windows with:
+* Node 12.18.4 LTS
+* aria2 1.35.0
+* ffmpeg-release-full 4.3.1
 
 ## INSTALLATION INSTRUCTIONS
 ### Windows
