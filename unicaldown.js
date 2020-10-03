@@ -50,26 +50,27 @@ function sanityChecks() {
     process.exit(23);
   }
   if (argv.videoUrls === undefined && argv.videoUrlsFile === undefined) {
-    term.red("Missing URLs arguments.\n");
+    term.red("Missing URLs argument. Use -v or -f option.\n");
     process.exit();
   }
   if (argv.videoUrls !== undefined && argv.videoUrlsFile !== undefined) {
-    term.red("Can't get URLs from both argument.\n");
+    term.red("Can't get URLs from both prepared arguments simultaneously. Use -v or -f option.\n");
     process.exit();
   }
   if (argv.videoUrlsFile !== undefined)
     argv.videoUrls = argv.videoUrlsFile; // merge argument
-  if (!fs.existsSync(argv.outputDirectory)) {
-    if (path.isAbsolute(argv.outputDirectory) || argv.outputDirectory[0] == '~')
-      console.log('Creating output directory: ' + argv.outputDirectory);
-    else console.log('Creating output directory: ' + process.cwd() + path.sep + argv.outputDirectory);
-    try {
-      fs.mkdirSync(argv.outputDirectory, { recursive: true }); // use native API for nested directory. No recursive function needed, but compatible only with node v10 or later
-    } catch (e) {
-      term.red("Can not create nested directories. Node v10 or later is required.\n");
-      process.exit();
-    }
+  if (argv.username == "..." || argv.videoUrlsFile == "..." || argv.outputDirectory == "..." || argv.quality == "...") {
+    term.red("You must fill properly the easy-launcher executable before to use it. Follow the guidelines on README file.\n"); // Dummies: I can see you
+    process.exit();
   }
+  if (!fs.existsSync(argv.outputDirectory)) {
+	term.red("Can't find and get the specified video output directory. Make it and try again.\n"); // Dummies: I can see you
+    process.exit();
+  }
+}
+
+function easyLauncherCheck() {
+	
 }
 
 function readFileToArray(path) {
@@ -570,7 +571,7 @@ async function extractCookies(page) {
 }
 */
 
-term.green('UnicalDown v1.7.3\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7.4\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
