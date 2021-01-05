@@ -1,4 +1,4 @@
-# [UnicalDown v1.7.4](https://github.com/peppelongo96/UnicalDown/archive/v1.7.4.zip) 
+# [UnicalDown v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip) 
 [![GitHub license](https://img.shields.io/github/license/peppelongo96/UnicalDown.svg)](https://github.com/peppelongo96/UnicalDown/blob/master/LICENSE) [![made-with-Node.js](https://img.shields.io/badge/Made%20with-Node.js-1f425f.svg)](https://nodejs.org/it/) [![GitHub contributors](https://img.shields.io/github/contributors/peppelongo96/UnicalDown.svg)](https://GitHub.com/peppelongo96/UnicalDown/graphs/contributors/) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://peppelongo96.github.io)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
@@ -51,6 +51,9 @@ This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that
  - Fix and update dependencies installing. **Do a clean installation or execute** `$ npm install` **command**
  - Add noob checks with easy-launchers executing
  - README update: please follow the [prereqs](https://github.com/peppelongo96/UnicalDown#prereqs) section
+#### [v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip)
+- Dependencies update. **Do a clean installation or execute** `$ npm install` **command**
+- Check [test bench](https://github.com/peppelongo96/UnicalDown#latest-release-v174-tested-on-windows-with)
  
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However I take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
@@ -66,10 +69,10 @@ The fix could be introduced also in UnicalDown by rebasing only the access token
 * [**aria2**](https://github.com/aria2/aria2/releases): this needs to be in your `$PATH`. Choose the latest release.
 * [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), always in your `$PATH`. On Windows, the release-full version is recommended.
 * A **stable connection** is **recommended**. Video fragments acquiring is a timed procedure due to Stream m3u8 source.
-#### Latest release [v1.7.4](https://github.com/peppelongo96/UnicalDown/archive/v1.7.4.zip) tested on Windows with:
-* Node 12.18.4 LTS
-* aria2 1.35.0
-* ffmpeg-release-full 4.3.1
+#### Latest release [v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip) tested on Windows with:
+* [Node v14.15.4 LTS](https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi)
+* [aria2 1.35.0](https://github.com/aria2/aria2/releases/download/release-1.35.0/aria2-1.35.0-win-64bit-build1.zip)
+* [ffmpeg-release-full-4.3.1-2021-01-01](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z)
 
 ## INSTALLATION INSTRUCTIONS
 ### Windows

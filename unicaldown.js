@@ -571,7 +571,7 @@ async function extractCookies(page) {
 }
 */
 
-term.green('UnicalDown v1.7.4\nFork powered by @peppelongo96\n');
+term.green('UnicalDown v1.7.5\nFork powered by @peppelongo96\n');
 sanityChecks();
 const videoUrls = parseVideoUrls(argv.videoUrls);
 console.info('Video URLs: %s', videoUrls);
