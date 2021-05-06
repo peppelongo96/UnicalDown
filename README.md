@@ -1,4 +1,4 @@
-# [UnicalDown v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip) 
+# [UnicalDown v1.7.6](https://github.com/peppelongo96/UnicalDown/archive/v1.7.6.zip) 
 [![GitHub license](https://img.shields.io/github/license/peppelongo96/UnicalDown.svg)](https://github.com/peppelongo96/UnicalDown/blob/master/LICENSE) [![made-with-Node.js](https://img.shields.io/badge/Made%20with-Node.js-1f425f.svg)](https://nodejs.org/it/) [![GitHub contributors](https://img.shields.io/github/contributors/peppelongo96/UnicalDown.svg)](https://GitHub.com/peppelongo96/UnicalDown/graphs/contributors/) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://peppelongo96.github.io)
 
 #### Save locally Microsoft Stream not-download-enabled videos uploaded by Università della Calabria
