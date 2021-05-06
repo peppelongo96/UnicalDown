@@ -54,6 +54,9 @@ This project is a fork of [PoliDown](https://github.com/sup3rgiu/PoliDown)* that
 #### [v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip)
 - Dependencies update. **Do a clean installation or execute** `$ npm install` **command**
 - Check [test bench](https://github.com/peppelongo96/UnicalDown#latest-release-v175-tested-on-windows-with)
+#### [v1.7.6](https://github.com/peppelongo96/UnicalDown/archive/v1.7.6.zip)
+- Dependencies update. **Do a clean installation or execute** `$ npm install` **command**
+- Check [test bench](https://github.com/peppelongo96/UnicalDown#latest-release-v176-tested-on-windows-with)
  
 ### Disclaimer
 Hopefully this doesn't break the end user agreement for Microsoft Stream. Since we're simply saving the HLS stream to disk as if we were a browser, this does not abuse the streaming endpoints. However I take no responsibility if either Microsoft or your Office 365 admins request a chat with you in a small white room.
@@ -69,10 +72,10 @@ The fix could be introduced also in UnicalDown by rebasing only the access token
 * [**aria2**](https://github.com/aria2/aria2/releases): this needs to be in your `$PATH`. Choose the latest release.
 * [**ffmpeg**](https://www.ffmpeg.org/download.html): a recent version (year 2019 or above), always in your `$PATH`. On Windows, the release-full version is recommended.
 * A **stable connection** is **recommended**. Video fragments acquiring is a timed procedure due to Stream m3u8 source.
-#### Latest release [v1.7.5](https://github.com/peppelongo96/UnicalDown/archive/v1.7.5.zip) tested on Windows with:
+#### Latest release [v1.7.6](https://github.com/peppelongo96/UnicalDown/archive/v1.7.6.zip) tested on Windows with:
 * [Node v14.15.4 LTS](https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi)
 * [aria2 1.35.0](https://github.com/aria2/aria2/releases/download/release-1.35.0/aria2-1.35.0-win-64bit-build1.zip)
-* [ffmpeg-release-full-4.3.1-2021-01-01](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z)
+* [ffmpeg-release-full-4.4-2021-05-07](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z)
 
 ## INSTALLATION INSTRUCTIONS
 ### Windows
